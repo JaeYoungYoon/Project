@@ -18,4 +18,11 @@ footer 70
          /* 요안도라 이미지 없어지고 검은바탕
             메뉴가 버튼 4개가 늘어진 형태로 바뀌었다
             사진 float이 없어졌다 */
+
+header 300
+contents 570
+gallery 640
+footer 70
+
+
         }
