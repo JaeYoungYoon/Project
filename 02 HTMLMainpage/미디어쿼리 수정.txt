@@ -6,6 +6,12 @@ wrap : 1000 * 820
 
         @media screen and (max-width:1024px) {
 	/* 화면이 작아졌다. float 없어졌다. */
+
+header 250
+contents 440
+gallery 150
+footer 70
+
         }
 
         @media screen and (max-width:600px) {
