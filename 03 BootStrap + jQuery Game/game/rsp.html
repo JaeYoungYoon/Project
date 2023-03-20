@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <title>게임세상</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(() => {
+
+            function ComputerRspPlayer(yourRsp) {
+                this.rsp = ['가위', '바위', '보'];
+                this.img = ['./image/가위.png', './image/바위.png', './image/보.png'];
+
+                console.log(Math.floor(Math.random() * 3));
+                this.computerRsp = this.rsp[Math.floor(Math.random() * 3)];
+                this.getResult = function () {
+
+                    // console.log(this.computerRsp + "::::" + yourRsp);
+                    var result = "同じです";
+                    if (this.computerRsp == yourRsp)
+                        return result;
+
+                    if (this.computerRsp == "가위") {
+
+                        if (yourRsp == "바위")
+                            result = "あなたの勝ちです!!";
+                        else if (yourRsp == "보")
+                            result = "残念…";
+
+                    } else if (this.computerRsp == "바위") {
+
+                        if (yourRsp == "보")
+                            result = "あなたの勝ちです!!";
+                        else if (yourRsp == "가위")
+                            result = "残念…";
+
+                    } else if (this.computerRsp == "보") {
+
+                        if (yourRsp == "가위")
+                            result = "あなたの勝ちです!!";
+                        else if (yourRsp == "바위")
+                            result = "残念…";
+                    }
+                    return result;
+                }
+
+
+            };
+
+            $(".your-rsp").each(function (index, item) {
+
+                $(this).click(function () {
+
+                    console.log($(this).text().trim())
+                    let rspPlayer = new ComputerRspPlayer($(this).text().trim());
+                    let result = rspPlayer.getResult();
+                    console.log(result);
+
+                    $("#rsp-result").text(result);
+                    $("#rsp-img-your").attr("src", "./image/" + $(this).text().trim() + ".png").attr("width", "200px").attr("height", "250px");
+                    $("#rsp-img-computer").attr("src", "./image/" + rspPlayer.computerRsp + ".png").attr("width", "200px").attr("height", "250px");
+                    $("#rsp-btn-computer").text(rspPlayer.computerRsp);
+                });
+
+            });
+        });    
+    </script>
+
+    <style>
+        main {
+            background-color: #ADADAD;
+            width: 100%;
+            height: 860px;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <a class="navbar-brand" href="#">게임</a>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="rsp.html">가위바위보 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="lotto.html">로또</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 d-flex justify-content-center">
+                    <div class="card" style="width: 18rem;">
+                        <img id="rsp-img-your" src="./image/animal_chara_computer_penguin.png" class="card-img-top"
+                            alt="you">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">あなた</h5>
+                            <button class="btn btn-danger m-2 your-rsp">가위</a>
+                                <button class="btn btn-warning m-2 your-rsp">바위</a>
+                                    <button class="btn btn-primary m-2 your-rsp">보</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex justify-content-center">
+                    <div class="card" style="width: 18rem;">
+                        <img src="./image/animal_chara_radio_azarashi.png" class="card-img-top" alt="judge">
+                        <div class="card-body text-center">
+                            <h5 class="card-title ">結果</h5>
+                            <p id="rsp-result">じゃんけんしよう！</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex justify-content-center">
+                    <div class="card" style="width: 18rem;">
+                        <img id="rsp-img-computer" src="./image/ai_computer_sousa_robot.png" class="card-img-top"
+                            alt="computer">
+                        <div class="card-body text-center">
+                            <h5 class="card-title ">ロボット</h5>
+                            <button id="rsp-btn-computer" class="btn btn-secondary m-2">가위</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="bg-dark py-2">
+            <div class="container text-center">
+                <p class="text-muted mb-0 py-2">
+                    BootStrap & jQuery Project by Jane
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
