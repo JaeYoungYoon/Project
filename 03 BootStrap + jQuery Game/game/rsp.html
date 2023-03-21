@@ -20,41 +20,41 @@
         crossorigin="anonymous"></script>
 
     <script>
-        $(document).ready(() => {
+        $(document).ready(function () {
 
             function ComputerRspPlayer(yourRsp) {
-                this.rsp = ['チョキ', 'グー', 'パー'];
-                this.img = ['./image/チョキ.png', './image/グー.png', './image/パー.png'];
+                this.rsp = ['グー', 'チョキ', 'パー']; // じゃんけん
+                this.img = ['./image/グー.png', './image/チョキ.png', './image/パー.png']; // イメージを準備する。
 
-                console.log(Math.floor(Math.random() * 3));
-                this.computerRsp = this.rsp[Math.floor(Math.random() * 3)];
+                this.computerRsp = this.rsp[Math.floor(Math.random() * 3)]; // 0,1,2の中で選ぶ。
+
                 this.getResult = function () {
 
-                    // console.log(this.computerRsp + "::::" + yourRsp);
-                    var result = "同じです";
+                    var result = "同じです"; // 結果を教える。
+
                     if (this.computerRsp == yourRsp)
-                        return result;
+                        return result; // 結果が同じ
 
-                    if (this.computerRsp == "チョキ") {
+                    if (this.computerRsp == "グー") {　// ロボットがグーなら
 
-                        if (yourRsp == "グー")
-                            result = "あなたの勝ちです!!";
-                        else if (yourRsp == "パー")
-                            result = "残念…";
+                        if (yourRsp == "パー")　// 私がパー
+                            result = "あなたの勝ちです!!";　// 私が勝ち
+                        else if (yourRsp == "チョキ")　// 私がチョキ
+                            result = "残念…";　// 私が負け
 
-                    } else if (this.computerRsp == "グー") {
+                    } else if (this.computerRsp == "チョキ") {　// ロボットがチョキなら
 
-                        if (yourRsp == "パー")
-                            result = "あなたの勝ちです!!";
-                        else if (yourRsp == "チョキ")
-                            result = "残念…";
+                        if (yourRsp == "グー")　// 私がグー
+                            result = "あなたの勝ちです!!";　// 私が勝ち
+                        else if (yourRsp == "パー")　// 私がパー
+                            result = "残念…";　// 私が負け
 
-                    } else if (this.computerRsp == "パー") {
+                    } else if (this.computerRsp == "パー") {　// ロボットがパーなら
 
-                        if (yourRsp == "チョキ")
-                            result = "あなたの勝ちです!!";
-                        else if (yourRsp == "グー")
-                            result = "残念…";
+                        if (yourRsp == "チョキ")　// 私がチョキ
+                            result = "あなたの勝ちです!!";　// 私が勝ち
+                        else if (yourRsp == "グー")　// 私がグー
+                            result = "残念…";　// 私が負け
                     }
                     return result;
                 }
@@ -62,19 +62,17 @@
 
             };
 
-            $(".your-rsp").each(function (index, item) {
+            $(".your-rsp").each(function (index, item) {　// 私がボタンを押した時は、配列を繰り返して機能を与える。
 
                 $(this).click(function () {
 
-                    console.log($(this).text().trim())
-                    let rspPlayer = new ComputerRspPlayer($(this).text().trim());
-                    let result = rspPlayer.getResult();
-                    console.log(result);
+                    var rspPlayer = new ComputerRspPlayer($(this).text().trim()); // 作った関数で呼んで、変数の中で置く。
+                    var result = rspPlayer.getResult();　// 結果をもらう。
 
-                    $("#rsp-result").text(result);
-                    $("#rsp-img-your").attr("src", "./image/" + $(this).text().trim() + ".png").attr("width", "200px").attr("height", "250px");
-                    $("#rsp-img-computer").attr("src", "./image/" + rspPlayer.computerRsp + ".png").attr("width", "200px").attr("height", "250px");
-                    $("#rsp-btn-computer").text(rspPlayer.computerRsp);
+                    $("#rsp-result").text(result); // 結果を表示。
+                    $("#rsp-img-your").attr("src", "./image/" + $(this).text().trim() + ".png").attr("width", "200px").attr("height", "250px");　 // じゃんけんのイメージを表示。
+                    $("#rsp-img-computer").attr("src", "./image/" + rspPlayer.computerRsp + ".png").attr("width", "200px").attr("height", "250px"); // じゃんけんのイメージを表示。
+                    $("#rsp-btn-computer").text(rspPlayer.computerRsp); // ロボットのじゃんけんの結果を表示。
                 });
 
             });
@@ -122,7 +120,7 @@
                 </form>
             </div>
         </nav>
-    </header>
+    </header> <!-- header -->
     <main>
         <div class="container">
             <div class="row">
@@ -132,8 +130,8 @@
                             alt="you">
                         <div class="card-body text-center">
                             <h5 class="card-title">あなた</h5>
-                            <button class="btn btn-danger m-2 your-rsp">チョキ</button>
-                            <button class="btn btn-warning m-2 your-rsp">グー</button>
+                            <button class="btn btn-danger m-2 your-rsp">グー</button>
+                            <button class="btn btn-warning m-2 your-rsp">チョキ</button>
                             <button class="btn btn-primary m-2 your-rsp">パー</button>
                         </div>
                     </div>
@@ -160,7 +158,7 @@
 
             </div>
         </div>
-    </main>
+    </main> <!-- main -->
 
     <footer>
         <div class="bg-dark py-2">
@@ -170,7 +168,7 @@
                 </p>
             </div>
         </div>
-    </footer>
+    </footer> <!-- footer -->
 </body>
 
 </html>
