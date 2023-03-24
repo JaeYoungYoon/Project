@@ -1,5 +1,10 @@
 @charset 'utf-8';
 
+main{
+	position:relative;
+}
+
+
 #gugudan {
     position: absolute;
     top: 50%;
