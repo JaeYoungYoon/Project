@@ -1,7 +1,7 @@
         $(function () {
             var table = $("<table>").attr("border", "1").addClass("table table-bordered table-success"); // addClass
             var headerRow = $("<thead>");
-            headerRow.append($("<td>"));
+            headerRow.append($("<th>"));
 
             for (var i = 2; i <= 9; i++) {
                 var headerCell = $("<th>").text(i + "단");
